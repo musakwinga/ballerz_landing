@@ -4,19 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Ballerz | Community Feedback - Share Your Ideas</title>
+    <meta name="description" content="Help shape Ballerz! Share your feature ideas, vote on suggestions, and help us build the best gaming platform.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Fortnite Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Rubik+Glitch&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { background-color: #0a0c0f; font-family: 'Oswald', sans-serif; }
+        /* Ballerz Theme Variables */
+        :root {
+            --primary: #00ff87;
+            --secondary: #60efff;
+            --gradient: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
+            --bg-dark: #0a0c0f;
+            --bg-card: #1a1e24;
+            --bg-card-hover: #242931;
+            --text-primary: #ffffff;
+            --text-secondary: #8b949e;
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow-primary: 0 10px 30px -10px #00ff87;
+        }
         
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Oswald', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Fortnite-style Headings */
+        h1, h2, h3, .font-heading {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px rgba(0, 255, 135, 0.3);
+        }
+        
+        .font-display {
+            font-family: 'Anton', sans-serif;
+        }
+        
+        .font-accent {
+            font-family: 'Bebas Neue', cursive;
+        }
+        
+        /* Animated Background */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -58,29 +94,64 @@
             50% { transform: translate(-30px, 20px) scale(1.05); }
         }
         
+        /* Cards */
         .feedback-card {
-            transition: all 0.3s ease;
-            background: rgba(26, 30, 36, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
         }
         
         .feedback-card:hover {
-            transform: translateY(-3px);
-            border-color: #00ff87;
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-primary);
+            background: var(--bg-card-hover);
         }
         
+        /* Buttons */
+        .btn-primary {
+            background: var(--gradient);
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.3);
+            transform: translateY(0);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            transition: all 0.2s ease;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Toast Notification */
         .toast-notification {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: linear-gradient(135deg, #00ff87, #60efff);
-            color: #0a0c0f;
+            background: var(--gradient);
+            color: var(--bg-dark);
             padding: 12px 24px;
             border-radius: 50px;
             font-family: 'Bebas Neue', cursive;
             font-weight: bold;
             z-index: 2000;
             animation: slideInRight 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 255, 135, 0.3);
         }
         
         @keyframes slideInRight {
@@ -88,6 +159,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
         
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -100,6 +172,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
@@ -111,11 +189,12 @@
             to { transform: translateY(0); opacity: 1; }
         }
         
+        /* Loading Spinner */
         .loading-spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: #00ff87;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -125,19 +204,38 @@
             to { transform: rotate(360deg); }
         }
         
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1a1e24; }
-        ::-webkit-scrollbar-thumb { background: #00ff87; border-radius: 10px; }
-        
+        /* Input Focus */
         .input-focus:focus {
             outline: none;
-            border-color: #00ff87;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(0, 255, 135, 0.2);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-card);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Selection */
+        ::selection {
+            background: var(--primary);
+            color: var(--bg-dark);
         }
     </style>
 </head>
 <body>
 
+<!-- Animated Background -->
 <div class="bg-animation">
     <div class="gradient-sphere" style="top: -20%; right: -10%;"></div>
     <div class="gradient-sphere-2"></div>
@@ -147,9 +245,10 @@
 <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0c0f]/95 backdrop-blur-lg border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 md:h-20">
+            <!-- Logo -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-[#00ff87] to-[#60efff] flex items-center justify-center">
-                    <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#0a0c0f] border-2 border-[#0a0c0f]"></div>
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-[#00ff87] to-[#60efff] flex items-center justify-center animate-pulse">
+                    <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#0a0c0f]"></div>
                 </div>
                 <div>
                     <span class="text-2xl md:text-3xl font-display bg-gradient-to-r from-[#00ff87] to-[#60efff] bg-clip-text text-transparent">BALLERZ</span>
@@ -172,10 +271,11 @@
 <!-- Main Content -->
 <main class="pt-24 pb-16 px-4">
     <div class="max-w-6xl mx-auto">
+        <!-- Header -->
         <div class="text-center mb-12">
             <div class="inline-flex items-center gap-2 bg-[#00ff87]/10 border border-[#00ff87] rounded-full px-4 py-2 mb-6">
                 <i class="fas fa-globe text-[#00ff87] text-sm"></i>
-                <span class="text-[#00ff87] text-sm font-accent">LIVE CROSS-DEVICE FEEDBACK</span>
+                <span class="text-[#00ff87] text-sm font-accent tracking-wide">LIVE COMMUNITY FEEDBACK</span>
             </div>
             <h1 class="font-heading text-4xl md:text-5xl text-white mb-4">Shape the Future of <span class="text-[#00ff87]">Ballerz</span></h1>
             <p class="text-white/60 max-w-2xl mx-auto">Your ideas sync across ALL devices! Share features, vote, and help build the platform.</p>
@@ -186,13 +286,18 @@
             <div class="flex items-center gap-4">
                 <div class="bg-[#1a1e24] rounded-full px-4 py-2 border border-white/10">
                     <i class="fas fa-comment text-[#00ff87] mr-2"></i>
-                    <span class="text-white" id="messageCount">0</span>
-                    <span class="text-white/50 text-sm ml-1">ideas</span>
+                    <span class="text-white font-bold" id="messageCount">0</span>
+                    <span class="text-white/50 text-sm ml-1">ideas shared</span>
+                </div>
+                <div class="bg-[#1a1e24] rounded-full px-4 py-2 border border-white/10">
+                    <i class="fas fa-thumbs-up text-[#00ff87] mr-2"></i>
+                    <span class="text-white font-bold" id="totalUpvotes">0</span>
+                    <span class="text-white/50 text-sm ml-1">total votes</span>
                 </div>
             </div>
             <div class="bg-[#1a1e24]/50 rounded-full px-4 py-2 border border-white/10">
                 <i class="fas fa-user text-[#00ff87] mr-2"></i>
-                <span class="text-white" id="currentUsername">Guest</span>
+                <span class="text-white font-accent" id="currentUsername">Guest</span>
             </div>
         </div>
         
@@ -200,24 +305,30 @@
         <div class="bg-[#1a1e24] rounded-2xl border border-white/10 p-6 mb-8">
             <h3 class="font-heading text-xl text-white mb-4">Share Your Idea</h3>
             <div class="flex gap-4 flex-col md:flex-row">
-                <input type="text" id="feedbackInput" placeholder="What feature would you love to see? e.g., 'M-Pesa integration', 'Tournament chat'..." 
+                <input type="text" id="feedbackInput" placeholder="What feature would you love to see? e.g., 'M-Pesa integration', 'Tournament chat', 'Live match streaming'..." 
                     class="flex-1 bg-[#0a0c0f]/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-[#00ff87] focus:outline-none input-focus">
-                <button onclick="submitFeedback()" id="submitBtn" class="px-6 py-3 bg-gradient-to-r from-[#00ff87] to-[#60efff] text-[#0a0c0f] font-accent font-bold rounded-xl hover:scale-105 transition whitespace-nowrap">
-                    <i class="fas fa-paper-plane mr-2"></i> Share
+                <button onclick="submitFeedback()" id="submitBtn" class="btn-primary px-6 py-3 bg-gradient-to-r from-[#00ff87] to-[#60efff] text-[#0a0c0f] font-accent font-bold rounded-xl hover:scale-105 transition whitespace-nowrap">
+                    <i class="fas fa-paper-plane mr-2"></i> Share Idea
                 </button>
             </div>
+            <p class="text-white/40 text-xs mt-3"><i class="fas fa-info-circle mr-1"></i> Your idea will be visible to everyone. Be constructive and respectful!</p>
         </div>
         
         <!-- Feed -->
         <div class="bg-[#1a1e24] rounded-2xl border border-white/10 overflow-hidden">
-            <div class="bg-[#0a0c0f]/50 px-6 py-4 border-b border-white/10">
-                <h3 class="font-heading text-white"><i class="fas fa-fire text-[#00ff87] mr-2"></i> Live Ideas Feed</h3>
-                <p class="text-white/40 text-sm mt-1">Real-time from all users worldwide</p>
+            <div class="bg-[#0a0c0f]/50 px-6 py-4 border-b border-white/10 flex justify-between items-center">
+                <div>
+                    <h3 class="font-heading text-white"><i class="fas fa-fire text-[#00ff87] mr-2"></i> Live Ideas Feed</h3>
+                    <p class="text-white/40 text-sm mt-1">Real-time updates from the community</p>
+                </div>
+                <button onclick="refreshFeedback()" class="text-white/50 hover:text-[#00ff87] transition">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
             </div>
             <div id="feedbackFeed" class="h-[500px] overflow-y-auto p-4 space-y-4">
                 <div class="text-center text-white/40 py-10">
                     <div class="loading-spinner"></div>
-                    <p>Loading community ideas...</p>
+                    <p class="font-accent">Loading community ideas...</p>
                 </div>
             </div>
         </div>
@@ -231,10 +342,10 @@
             <div class="w-16 h-16 mx-auto bg-gradient-to-r from-[#00ff87] to-[#60efff] rounded-full flex items-center justify-center mb-4">
                 <i class="fas fa-user text-2xl text-[#0a0c0f]"></i>
             </div>
-            <h2 class="text-2xl font-heading text-white mb-2">Choose Username</h2>
-            <p class="text-white/60 mb-6">Your name appears with your ideas</p>
+            <h2 class="text-2xl font-heading text-white mb-2">Choose Your Username</h2>
+            <p class="text-white/60 mb-6">This name will appear with your ideas</p>
         </div>
-        <input type="text" id="usernameInput" maxlength="30" class="w-full px-4 py-3 bg-[#0a0c0f]/50 border border-white/10 rounded-xl text-white focus:border-[#00ff87] focus:outline-none input-focus mb-4" placeholder="Enter username">
+        <input type="text" id="usernameInput" maxlength="30" class="w-full px-4 py-3 bg-[#0a0c0f]/50 border border-white/10 rounded-xl text-white focus:border-[#00ff87] focus:outline-none input-focus mb-4" placeholder="Enter username (max 30 chars)">
         <div class="flex gap-3">
             <button onclick="saveUsername()" class="flex-1 py-3 bg-gradient-to-r from-[#00ff87] to-[#60efff] text-[#0a0c0f] font-accent font-bold rounded-xl hover:scale-105 transition">Save</button>
             <button onclick="closeUsernameModal()" class="flex-1 py-3 bg-[#1a1e24] border border-white/10 text-white/70 rounded-xl hover:border-[#00ff87] transition">Cancel</button>
@@ -244,26 +355,23 @@
 
 <script>
     // ============================================
-    // ⚠️ IMPORTANT: REPLACE WITH YOUR JSONBIN.IO CREDENTIALS
+    // JSONBin Configuration
     // ============================================
-    const JSONBIN_BIN_ID = "69cd17e9aaba882197b4ee0a";      // Get from jsonbin.io dashboard
-    const JSONBIN_API_KEY = "$2a$10$WH1TjWuzGKnSIL2aM2Q.yuqSdGqbceFxCzH0n.l0vzVRLBXxg0h9S";    // Get from API Keys section
+    const JSONBIN_BIN_ID = "69cd17e9aaba882197b4ee0a";
+    const JSONBIN_API_KEY = "$2a$10$WH1TjWuzGKnSIL2aM2Q.yuqSdGqbceFxCzH0n.l0vzVRLBXxg0h9S";
     
-    // API URLs
     const READ_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`;
     const UPDATE_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
     
     let currentUsername = localStorage.getItem('ballerz_username') || '';
     
     // ============================================
-    // LOAD FEEDBACK FROM JSONBIN
+    // Load Feedback from JSONBin
     // ============================================
     async function loadFeedback() {
         try {
             const response = await fetch(READ_URL, {
-                headers: {
-                    'X-Master-Key': JSONBIN_API_KEY
-                }
+                headers: { 'X-Master-Key': JSONBIN_API_KEY }
             });
             const data = await response.json();
             let feedbackData = data.record.feedback || [];
@@ -271,19 +379,23 @@
             displayFeedback(feedbackData);
             document.getElementById('messageCount').textContent = feedbackData.length;
             
+            // Calculate total upvotes
+            const totalUpvotes = feedbackData.reduce((sum, item) => sum + (item.upvotes || 0), 0);
+            document.getElementById('totalUpvotes').textContent = totalUpvotes;
+            
         } catch (error) {
             console.error('Error loading feedback:', error);
             document.getElementById('feedbackFeed').innerHTML = `
                 <div class="text-center text-white/40 py-10">
                     <i class="fas fa-exclamation-triangle text-3xl mb-3"></i>
-                    <p>Error loading feedback. Please refresh.</p>
+                    <p>Error loading feedback. Please refresh the page.</p>
                 </div>
             `;
         }
     }
     
     // ============================================
-    // DISPLAY FEEDBACK
+    // Display Feedback
     // ============================================
     function displayFeedback(feedbackData) {
         const container = document.getElementById('feedbackFeed');
@@ -292,36 +404,40 @@
             container.innerHTML = `
                 <div class="text-center text-white/40 py-10">
                     <i class="fas fa-comment-dots text-4xl mb-3"></i>
-                    <p>No ideas yet. Be the first to share!</p>
+                    <h3 class="font-heading text-white text-lg">No ideas yet</h3>
+                    <p class="text-sm">Be the first to share your idea!</p>
                 </div>
             `;
             return;
         }
         
-        // Sort newest first
-        const sorted = [...feedbackData].reverse();
+        // Sort by upvotes (most popular first)
+        const sorted = [...feedbackData].sort((a, b) => (b.upvotes || 0) - (a.upvotes || 0));
         
         container.innerHTML = sorted.map(item => `
             <div class="feedback-card rounded-xl p-4 transition-all">
                 <div class="flex justify-between items-start mb-2">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-[#00ff87] to-[#60efff] flex items-center justify-center text-[#0a0c0f] font-bold text-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-r from-[#00ff87] to-[#60efff] flex items-center justify-center text-[#0a0c0f] font-bold text-sm">
                             ${(item.username || '?').charAt(0).toUpperCase()}
                         </div>
-                        <span class="font-accent text-[#00ff87]">${escapeHtml(item.username || 'Anonymous')}</span>
-                        <span class="text-white/30 text-xs">${formatTime(item.timestamp)}</span>
+                        <div>
+                            <span class="font-accent text-[#00ff87] font-bold">${escapeHtml(item.username || 'Anonymous')}</span>
+                            <span class="text-white/40 text-xs ml-2">${formatTime(item.timestamp)}</span>
+                        </div>
                     </div>
-                    <button onclick="upvoteFeedback('${item.id}')" class="text-white/40 hover:text-[#00ff87] transition text-sm">
-                        <i class="fas fa-thumbs-up mr-1"></i> ${item.upvotes || 0}
+                    <button onclick="upvoteFeedback('${item.id}')" class="flex items-center gap-1 text-white/40 hover:text-[#00ff87] transition px-2 py-1 rounded-lg">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span class="text-sm font-bold">${item.upvotes || 0}</span>
                     </button>
                 </div>
-                <p class="text-white/80 ml-10">${escapeHtml(item.message)}</p>
+                <p class="text-white/80 ml-12">${escapeHtml(item.message)}</p>
             </div>
         `).join('');
     }
     
     // ============================================
-    // SUBMIT NEW FEEDBACK
+    // Submit New Feedback
     // ============================================
     async function submitFeedback() {
         const message = document.getElementById('feedbackInput').value.trim();
@@ -342,14 +458,12 @@
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sharing...';
         
         try {
-            // Get current data
             const response = await fetch(READ_URL, {
                 headers: { 'X-Master-Key': JSONBIN_API_KEY }
             });
             const data = await response.json();
             let feedbackData = data.record.feedback || [];
             
-            // Add new feedback
             const newFeedback = {
                 id: Date.now().toString(),
                 username: currentUsername,
@@ -360,7 +474,6 @@
             
             feedbackData.push(newFeedback);
             
-            // Update JSONBin
             await fetch(UPDATE_URL, {
                 method: 'PUT',
                 headers: {
@@ -372,19 +485,19 @@
             
             document.getElementById('feedbackInput').value = '';
             showToast('Idea shared! Thanks for contributing 🎉', 'success');
-            loadFeedback(); // Reload to show new idea
+            loadFeedback();
             
         } catch (error) {
             console.error('Error submitting:', error);
             showToast('Failed to share. Please try again.', 'error');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Share';
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Share Idea';
         }
     }
     
     // ============================================
-    // UPVOTE FEEDBACK
+    // Upvote Feedback
     // ============================================
     async function upvoteFeedback(feedbackId) {
         try {
@@ -416,16 +529,13 @@
     }
     
     // ============================================
-    // UTILITY FUNCTIONS
+    // Utility Functions
     // ============================================
     function escapeHtml(text) {
         if (!text) return '';
-        return text.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        });
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
     
     function formatTime(timestamp) {
@@ -465,7 +575,7 @@
             return;
         }
         if (newUsername.length > 30) {
-            showToast('Username too long!', 'warning');
+            showToast('Username too long! Max 30 characters', 'warning');
             return;
         }
         currentUsername = newUsername;
@@ -480,7 +590,9 @@
         showToast('Refreshing ideas...', 'info');
     }
     
+    // ============================================
     // Initialize
+    // ============================================
     document.getElementById('currentUsername').textContent = currentUsername || 'Guest';
     loadFeedback();
     
@@ -491,6 +603,27 @@
     
     // Auto-refresh every 30 seconds
     setInterval(loadFeedback, 30000);
+    
+    // Close modals on outside click
+    window.onclick = function(event) {
+        const modal = document.getElementById('usernameModal');
+        if (event.target === modal) {
+            closeUsernameModal();
+        }
+    };
+    
+    // Add pulse animation style
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    `;
+    document.head.appendChild(style);
 </script>
 
 </body>
