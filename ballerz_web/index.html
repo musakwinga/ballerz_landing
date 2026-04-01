@@ -243,12 +243,7 @@
             color: #0a0c0f;
         }
         
-        /* Admin Login Modal */
-        .admin-login {
-            position: relative;
-        }
-        
-        /* Coming Soon Toast */
+        /* Toast Notification */
         .toast-notification {
             position: fixed;
             bottom: 30px;
@@ -560,8 +555,8 @@
             <div>
                 <h4 class="text-white font-heading mb-4">Contact</h4>
                 <div class="space-y-2">
-                    <p class="text-white/50 text-sm"><i class="fas fa-envelope text-primary mr-2"></i> ballerzsupport@gmail.com</p>
-                    <p class="text-white/50 text-sm"><i class="fas fa-phone text-primary mr-2"></i> +254 117427043</p>
+                    <p class="text-white/50 text-sm"><i class="fas fa-envelope text-primary mr-2"></i> support@ballerz.com</p>
+                    <p class="text-white/50 text-sm"><i class="fas fa-phone text-primary mr-2"></i> +254 700 123 456</p>
                 </div>
                 <div class="flex gap-4 mt-4">
                     <a href="#" class="text-white/50 hover:text-primary text-xl"><i class="fab fa-twitter"></i></a>
@@ -575,12 +570,12 @@
         <!-- Admin Export Section (Hidden until bottom) -->
         <div class="mt-8 pt-8 border-t border-white/10">
             <div class="text-center mb-4">
-                <button onclick="showAdminLogin()" class="text-white/30 text-xs hover:text-primary transition">Admin Access</button>
+                <a href="#" onclick="showAdminLogin()" class="text-white/30 text-xs hover:text-primary transition">Admin Access</a>
             </div>
         </div>
         
         <div class="text-center pt-4">
-            <p class="text-white/40 text-sm">© 2026 Ballerz. All rights reserved. Powered by Kwinsoft.</p>
+            <p class="text-white/40 text-sm">© 2024 Ballerz. All rights reserved. Powered by Kwinsoft.</p>
             <p class="text-white/30 text-xs mt-2">Skill-based competitive gaming. Winners determined by actual game results and verified proof.</p>
         </div>
     </div>
@@ -614,7 +609,7 @@
                     <option value="both">Both</option>
                 </select>
             </div>
-            <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition transform">
+            <button type="submit" id="submitWaitlistBtn" class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition transform">
                 Join Waitlist
             </button>
         </form>
@@ -675,7 +670,7 @@
                     </tr>
                 </thead>
                 <tbody id="waitlistTableBody">
-                    <!-- Dynamic content -->
+                    <tr><td colspan="6" class="text-center text-white/50 py-8">Loading...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -711,36 +706,14 @@
         </div>
         <div class="prose prose-invert max-w-none">
             <p class="text-white/70 mb-4">Last Updated: April 2024</p>
-            
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">1. Acceptance of Terms</h3>
-            <p class="text-white/60 mb-4">By accessing or using Ballerz ("the Platform"), you agree to be bound by these Terms of Service. Ballerz is a skill-based competitive gaming platform operated by Kwinsoft.</p>
-            
+            <p class="text-white/60 mb-4">By accessing or using Ballerz, you agree to these Terms.</p>
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">2. Skill-Based Competition</h3>
-            <p class="text-white/60 mb-4">Ballerz is strictly a skill-based gaming platform. Winners are determined by actual game results, verified through submitted proof. This is NOT a gambling platform.</p>
-            
+            <p class="text-white/60 mb-4">Ballerz is strictly a skill-based gaming platform. NOT gambling.</p>
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">3. User Eligibility</h3>
-            <p class="text-white/60 mb-4">You must be at least 18 years old to participate in paid competitions. All users must provide accurate information during registration.</p>
-            
+            <p class="text-white/60 mb-4">You must be at least 18 years old to participate in paid competitions.</p>
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">4. Fair Play</h3>
-            <p class="text-white/60 mb-4">Cheating, collusion, or any form of unfair play is strictly prohibited. Violations may result in account suspension, forfeiture of winnings, and permanent ban.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">5. Payments & Withdrawals</h3>
-            <p class="text-white/60 mb-4">All payments are processed through secure providers. Winnings are credited to your wallet upon match verification. Withdrawals are processed within 24-48 hours.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">6. Dispute Resolution</h3>
-            <p class="text-white/60 mb-4">Any disputes regarding match results will be reviewed by our admin team. All decisions are final and binding.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">7. Platform Fees</h3>
-            <p class="text-white/60 mb-4">Ballerz charges a platform fee on each competition. Fees are clearly displayed before entry.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">8. Account Security</h3>
-            <p class="text-white/60 mb-4">You are responsible for maintaining the security of your account. Notify us immediately of any unauthorized access.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">9. Termination</h3>
-            <p class="text-white/60 mb-4">We reserve the right to suspend or terminate accounts that violate these terms.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">10. Contact</h3>
-            <p class="text-white/60 mb-4">For questions, contact support@ballerz.com</p>
+            <p class="text-white/60 mb-4">Cheating, collusion, or unfair play is strictly prohibited.</p>
         </div>
         <div class="mt-6 text-center">
             <button onclick="closeTermsModal()" class="px-6 py-2 bg-primary text-dark rounded-lg font-bold">Close</button>
@@ -757,30 +730,12 @@
         </div>
         <div class="prose prose-invert max-w-none">
             <p class="text-white/70 mb-4">Last Updated: April 2024</p>
-            
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">1. Information We Collect</h3>
-            <p class="text-white/60 mb-4">We collect information you provide during registration: name, email, phone number, gaming preferences, and transaction history.</p>
-            
+            <p class="text-white/60 mb-4">Name, email, phone, gaming preferences, and transaction history.</p>
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">2. How We Use Your Information</h3>
-            <p class="text-white/60 mb-4">To operate the platform, process payments, verify match results, communicate updates, and improve our services.</p>
-            
+            <p class="text-white/60 mb-4">To operate the platform, process payments, and verify match results.</p>
             <h3 class="text-primary font-heading text-xl mt-6 mb-3">3. Data Security</h3>
-            <p class="text-white/60 mb-4">We use industry-standard encryption and security measures to protect your data. All transactions are processed through secure payment gateways.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">4. Data Sharing</h3>
-            <p class="text-white/60 mb-4">We do not sell your personal information. Data is shared only with payment processors and as required by law.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">5. Your Rights</h3>
-            <p class="text-white/60 mb-4">You may request access, correction, or deletion of your personal data. Contact support@ballerz.com for assistance.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">6. Cookies</h3>
-            <p class="text-white/60 mb-4">We use cookies to enhance your experience and analyze platform usage.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">7. Updates to Policy</h3>
-            <p class="text-white/60 mb-4">We may update this policy periodically. Continued use constitutes acceptance of changes.</p>
-            
-            <h3 class="text-primary font-heading text-xl mt-6 mb-3">8. Contact</h3>
-            <p class="text-white/60 mb-4">For privacy concerns, email privacy@ballerz.com</p>
+            <p class="text-white/60 mb-4">We use industry-standard encryption to protect your data.</p>
         </div>
         <div class="mt-6 text-center">
             <button onclick="closePrivacyModal()" class="px-6 py-2 bg-primary text-dark rounded-lg font-bold">Close</button>
@@ -789,30 +744,100 @@
 </div>
 
 <script>
-    // Waitlist storage
-    let waitlistUsers = JSON.parse(localStorage.getItem('ballerz_waitlist') || '[]');
+    // Google Sheets Web App URL
+    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxp29VS4PhPmQ3Vs4fmo4NG7GZJ5klJzp1HLdoGUtXAy0N39MAzUeJFjOPunb9lsG4C/exec';
     
-    // Admin password (can be changed)
-    const ADMIN_PASSWORD = 'ballerz2024';
-    
-    function updateWaitlistCount() {
-        const countElement = document.getElementById('waitlistCount');
-        if (countElement) {
-            countElement.textContent = waitlistUsers.length;
+    // Load waitlist count from Google Sheets
+    async function loadWaitlistCount() {
+        try {
+            const response = await fetch(`${GOOGLE_SHEETS_URL}?action=count`);
+            const data = await response.json();
+            if (data.success) {
+                document.getElementById('waitlistCount').textContent = data.count || 0;
+            }
+        } catch (error) {
+            console.error('Error loading count:', error);
+            document.getElementById('waitlistCount').textContent = 'loading...';
         }
     }
     
-    // Modal functions
-    function openWaitlistModal() {
-        document.getElementById('waitlistModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+    // Handle waitlist form submission
+    document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const fullname = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim().toLowerCase();
+        const phone = document.getElementById('phone').value.trim();
+        const game = document.getElementById('game').value;
+        
+        if (!fullname || !email) {
+            alert('Please fill in your name and email');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        const submitBtn = document.getElementById('submitWaitlistBtn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fullname: fullname,
+                    email: email,
+                    phone: phone,
+                    game: game,
+                    timestamp: new Date().toISOString()
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                closeWaitlistModal();
+                openSuccessModal();
+                document.getElementById('waitlistForm').reset();
+                loadWaitlistCount();
+            } else {
+                alert(result.message || 'Failed to join waitlist');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to join waitlist. Please try again.');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    
+    // Load waitlist data for admin
+    async function loadWaitlistData() {
+        try {
+            const response = await fetch(`${GOOGLE_SHEETS_URL}?action=data`);
+            const data = await response.json();
+            
+            if (data.success) {
+                return data;
+            }
+            return null;
+        } catch (error) {
+            console.error('Error loading waitlist:', error);
+            return null;
+        }
     }
     
-    function closeWaitlistModal() {
-        document.getElementById('waitlistModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-    
+    // Admin Functions
     function showAdminLogin() {
         document.getElementById('adminLoginModal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -821,32 +846,41 @@
     function closeAdminLogin() {
         document.getElementById('adminLoginModal').style.display = 'none';
         document.body.style.overflow = 'auto';
+        document.getElementById('adminPassword').value = '';
     }
     
-    function showAdminDashboard() {
-        document.getElementById('adminDashboardModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        displayWaitlistTable();
-    }
-    
-    function closeAdminDashboard() {
-        document.getElementById('adminDashboardModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-    
-    function displayWaitlistTable() {
-        const tbody = document.getElementById('waitlistTableBody');
-        const countSpan = document.getElementById('dashboardCount');
+    async function showAdminDashboard() {
+        const password = document.getElementById('adminPassword').value;
         
-        countSpan.textContent = waitlistUsers.length;
-        
-        if (waitlistUsers.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center text-white/50 py-8">No waitlist users yet</td></tr>';
+        if (password !== 'ballerz2024') {
+            alert('Incorrect password');
             return;
         }
         
+        closeAdminLogin();
+        
+        const data = await loadWaitlistData();
+        
+        if (data && data.success) {
+            document.getElementById('dashboardCount').textContent = data.count;
+            displayWaitlistTable(data.users);
+            document.getElementById('adminDashboardModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        } else {
+            alert('Error loading waitlist data');
+        }
+    }
+    
+    function displayWaitlistTable(users) {
+        const tbody = document.getElementById('waitlistTableBody');
         tbody.innerHTML = '';
-        waitlistUsers.forEach((user, index) => {
+        
+        if (!users || users.length === 0) {
+            tbody.innerHTML = '的人<td colspan="6" class="text-center text-white/50 py-8">No waitlist users yet</td></tr>';
+            return;
+        }
+        
+        users.forEach((user, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${index + 1}</td>
@@ -854,7 +888,7 @@
                 <td>${escapeHtml(user.email)}</td>
                 <td>${user.phone || '-'}</td>
                 <td><span class="text-primary">${user.game === 'efootball' ? 'eFootball' : user.game === 'fifa' ? 'FIFA' : 'Both'}</span></td>
-                <td class="text-white/50 text-sm">${new Date(user.joinedAt).toLocaleDateString()}</td>
+                <td class="text-white/50 text-sm">${user.joinedAt || new Date().toLocaleDateString()}</td>
             `;
             tbody.appendChild(row);
         });
@@ -870,14 +904,24 @@
         });
     }
     
+    function closeAdminDashboard() {
+        document.getElementById('adminDashboardModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
     function showComingSoon() {
-        const toast = document.createElement('div');
-        toast.className = 'toast-notification';
-        toast.innerHTML = '<i class="fas fa-clock mr-2"></i> Download feature coming soon!';
-        document.body.appendChild(toast);
-        setTimeout(() => {
-            toast.remove();
-        }, 3000);
+        alert('Download feature coming soon! For now, copy data from the table above.');
+    }
+    
+    // Modal functions
+    function openWaitlistModal() {
+        document.getElementById('waitlistModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeWaitlistModal() {
+        document.getElementById('waitlistModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     
     function openSuccessModal() {
@@ -911,66 +955,10 @@
         document.body.style.overflow = 'auto';
     }
     
-    // Handle waitlist form submission
-    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+    // Admin login form
+    document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        const fullname = document.getElementById('fullname').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const game = document.getElementById('game').value;
-        
-        if (!fullname || !email) {
-            alert('Please fill in your name and email');
-            return;
-        }
-        
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        if (waitlistUsers.some(user => user.email === email)) {
-            alert('This email is already on the waitlist!');
-            return;
-        }
-        
-        const newUser = {
-            id: Date.now(),
-            fullname: fullname,
-            email: email,
-            phone: phone,
-            game: game,
-            joinedAt: new Date().toISOString()
-        };
-        
-        waitlistUsers.push(newUser);
-        localStorage.setItem('ballerz_waitlist', JSON.stringify(waitlistUsers));
-        
-        updateWaitlistCount();
-        
-        console.log('New waitlist user:', newUser);
-        console.log('Total waitlist users:', waitlistUsers.length);
-        
-        closeWaitlistModal();
-        openSuccessModal();
-        
-        document.getElementById('waitlistForm').reset();
-    });
-    
-    // Handle admin login
-    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const password = document.getElementById('adminPassword').value;
-        
-        if (password === ADMIN_PASSWORD) {
-            closeAdminLogin();
-            showAdminDashboard();
-        } else {
-            alert('Incorrect password');
-        }
-        document.getElementById('adminPassword').value = '';
+        await showAdminDashboard();
     });
     
     // Close modals on outside click
@@ -1008,8 +996,7 @@
     fadeElements.forEach(el => observer.observe(el));
     
     // Initialize
-    updateWaitlistCount();
-    console.log('Ballerz Waitlist Users:', waitlistUsers);
+    loadWaitlistCount();
 </script>
 
 </body>
