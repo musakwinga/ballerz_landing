@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ballerz | Compete. Win. Get Paid. - Join the Waitlist</title>
+    <meta name="description" content="Ballerz is a skill-based competitive gaming platform. Join our waitlist to be the first to compete, win, and get paid when we launch!">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Theme Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff87',
+                        secondary: '#60efff',
+                        dark: '#0a0c0f',
+                        card: '#1a1e24',
+                        'card-hover': '#242931',
+                    },
+                    fontFamily: {
+                        heading: ['Bangers', 'cursive'],
+                        display: ['Anton', 'sans-serif'],
+                        body: ['Oswald', 'sans-serif'],
+                        accent: ['Bebas Neue', 'cursive'],
+                    },
+                    animation: {
+                        'float': 'float 20s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                            '50%': { transform: 'translate(-30px, 20px) scale(1.05)' },
+                        },
+                        slideUp: {
+                            from: { opacity: '0', transform: 'translateY(30px)' },
+                            to: { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Custom CSS for animations and effects */
+        body {
+            background-color: #0a0c0f;
+            font-family: 'Oswald', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .gradient-sphere {
+            position: absolute;
+            width: 80vmax;
+            height: 80vmax;
+            background: radial-gradient(circle at 30% 50%,
+                rgba(0, 255, 135, 0.12) 0%,
+                rgba(96, 239, 255, 0.08) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .gradient-sphere-2 {
+            position: absolute;
+            width: 70vmax;
+            height: 70vmax;
+            background: radial-gradient(circle at 70% 30%,
+                rgba(96, 239, 255, 0.1) 0%,
+                rgba(0, 255, 135, 0.06) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+            bottom: -10%;
+            left: -10%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 20px) scale(1.05); }
+        }
+        
+        /* Card Hover Effect */
+        .feature-card, .pricing-card, .coming-soon-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-card:hover, .pricing-card:hover, .coming-soon-card:hover {
+            transform: translateY(-8px);
+            border-color: #00ff87;
+            box-shadow: 0 20px 40px -20px rgba(0, 255, 135, 0.3);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1e24;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00ff87;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #60efff;
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Modal Animation */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            animation: slideUp 0.4s ease;
+        }
+        
+        /* Admin Panel */
+        .admin-section {
+            transition: all 0.3s ease;
+        }
+        
+        .admin-section:hover {
+            background: rgba(0, 255, 135, 0.05);
+        }
+        
+        /* Table Styles */
+        .waitlist-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .waitlist-table th,
+        .waitlist-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .waitlist-table th {
+            color: #00ff87;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+        }
+        
+        .waitlist-table tr:hover {
+            background: rgba(0, 255, 135, 0.05);
+        }
+        
+        /* Input Focus */
+        .input-focus:focus {
+            outline: none;
+            border-color: #00ff87;
+            box-shadow: 0 0 0 3px rgba(0, 255, 135, 0.2);
+        }
+        
+        /* Success Checkmark */
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .checkmark i {
+            font-size: 40px;
+            color: #0a0c0f;
+        }
+        
+        /* Admin Login Modal */
+        .admin-login {
+            position: relative;
+        }
+        
+        /* Coming Soon Toast */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            color: #0a0c0f;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Bebas Neue', cursive;
+            font-weight: bold;
+            z-index: 2000;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 255, 135, 0.3);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="bg-animation">
+    <div class="gradient-sphere" style="top: -20%; right: -10%;"></div>
+    <div class="gradient-sphere-2"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-dark/95 backdrop-blur-lg border-b border-white/10 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 md:h-20">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center animate-pulse-slow">
+                    <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-dark border-2 border-dark"></div>
+                </div>
+                <div>
+                    <span class="text-2xl md:text-3xl font-display bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">BALLERZ</span>
+                    <span class="hidden md:inline-block text-xs text-white/50 ml-2 font-accent">Powered by Kwinsoft</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-white/70 hover:text-primary transition font-accent tracking-wide">About</a>
+                <a href="#how-it-works" class="text-white/70 hover:text-primary transition font-accent tracking-wide">How It Works</a>
+                <a href="#features" class="text-white/70 hover:text-primary transition font-accent tracking-wide">Features</a>
+                <a href="#pricing" class="text-white/70 hover:text-primary transition font-accent tracking-wide">Pricing</a>
+                <a href="#coming-soon" class="text-white/70 hover:text-primary transition font-accent tracking-wide">Coming Soon</a>
+                <button onclick="openWaitlistModal()" class="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-full hover:scale-105 transition transform">
+                    Join Waitlist
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-2xl" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden py-4 border-t border-white/10" id="mobileMenu">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="text-white/70 hover:text-primary transition font-accent tracking-wide py-2">About</a>
+                <a href="#how-it-works" class="text-white/70 hover:text-primary transition font-accent tracking-wide py-2">How It Works</a>
+                <a href="#features" class="text-white/70 hover:text-primary transition font-accent tracking-wide py-2">Features</a>
+                <a href="#pricing" class="text-white/70 hover:text-primary transition font-accent tracking-wide py-2">Pricing</a>
+                <a href="#coming-soon" class="text-white/70 hover:text-primary transition font-accent tracking-wide py-2">Coming Soon</a>
+                <button onclick="openWaitlistModal()" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-full text-center">
+                    Join Waitlist
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-[slideUp_0.6s_ease]">
+            <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary rounded-full px-4 py-2 mb-8">
+                <i class="fas fa-clock text-primary text-sm"></i>
+                <span class="text-primary text-sm font-accent tracking-wide">LAUNCHING SOON</span>
+            </div>
+            
+            <h1 class="font-heading text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight">
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Compete.</span><br>
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Win.</span>
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Get Paid.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-6 font-body">
+                Ballerz is a skill-based competitive gaming platform where players challenge each other, join tournaments, and earn real rewards.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openWaitlistModal()" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold text-lg rounded-full hover:scale-105 transition transform">
+                    <i class="fas fa-bell mr-2"></i> Join the Waitlist
+                </button>
+                <a href="#how-it-works" class="px-8 py-4 border-2 border-primary text-primary font-accent font-bold text-lg rounded-full hover:bg-primary hover:text-dark transition transform">
+                    <i class="fas fa-play-circle mr-2"></i> How It Works
+                </a>
+            </div>
+            
+            <!-- Waitlist Counter -->
+            <div class="mt-12">
+                <div class="inline-flex items-center gap-3 bg-card/50 rounded-full px-6 py-3 border border-white/10">
+                    <i class="fas fa-users text-primary text-xl"></i>
+                    <span class="text-white text-lg font-bold" id="waitlistCount">0</span>
+                    <span class="text-white/60">gamers already on the waitlist</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-up">
+                <span class="text-primary font-accent tracking-wider text-sm">ABOUT BALLERZ</span>
+                <h2 class="font-heading text-4xl md:text-5xl text-white mt-4 mb-6">Skill-Based <span class="text-primary">Competitive Gaming</span> Marketplace</h2>
+                <p class="text-white/70 text-lg mb-6 leading-relaxed">
+                    Ballerz is a skill-based competitive gaming marketplace that allows users to participate in 1v1 challenges and tournaments. Players pay entry fees to compete, and winners are rewarded based on verified match results.
+                </p>
+                <p class="text-white/60 mb-8">
+                    Powered by Kwinsoft's secure fintech infrastructure, we ensure transparent transactions, fair play, and instant payouts.
+                </p>
+                <button onclick="openWaitlistModal()" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-full hover:scale-105 transition transform">
+                    Join the Waitlist
+                </button>
+            </div>
+            <div class="relative fade-up">
+                <div class="bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl p-8 border border-white/10">
+                    <i class="fas fa-gamepad text-6xl text-primary mb-4"></i>
+                    <h3 class="text-2xl font-heading text-white mb-4">Powered by Kwinsoft</h3>
+                    <p class="text-white/60">Enterprise-grade fintech infrastructure ensuring secure payments, transparent transactions, and reliable dispute resolution.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-20 md:py-28 bg-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="text-primary font-accent tracking-wider text-sm">HOW IT WORKS</span>
+            <h2 class="font-heading text-4xl md:text-5xl text-white mt-4">Your Path to <span class="text-primary">Victory</span></h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-6 shadow-lg">
+                    <i class="fas fa-joystick text-3xl text-dark"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-3">1. Join Challenge</h3>
+                <p class="text-white/60">Browse challenges, select skill level, pay entry fee securely</p>
+            </div>
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-6 shadow-lg">
+                    <i class="fas fa-futbol text-3xl text-dark"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-3">2. Play & Upload Proof</h3>
+                <p class="text-white/60">Play match, screenshot result, upload for verification</p>
+            </div>
+            <div class="text-center">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-6 shadow-lg">
+                    <i class="fas fa-wallet text-3xl text-dark"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-3">3. Get Paid Instantly</h3>
+                <p class="text-white/60">Opponent verifies, winner gets paid automatically</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="text-primary font-accent tracking-wider text-sm">FEATURES</span>
+            <h2 class="font-heading text-4xl md:text-5xl text-white mt-4">Everything You Need to <span class="text-primary">Compete & Win</span></h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="feature-card bg-card rounded-2xl p-6 border border-white/10 hover:border-primary transition-all">
+                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-crosshairs text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-2">1v1 Challenges</h3>
+                <p class="text-white/60">Head-to-head competition. Prove your skills and earn rewards.</p>
+            </div>
+            <div class="feature-card bg-card rounded-2xl p-6 border border-white/10 hover:border-primary transition-all">
+                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-trophy text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-2">Multiplayer Tournaments</h3>
+                <p class="text-white/60">UEFA-style, Knockout, or League mode. Compete for bigger prizes.</p>
+            </div>
+            <div class="feature-card bg-card rounded-2xl p-6 border border-white/10 hover:border-primary transition-all">
+                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-wallet text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-2">Secure Wallet</h3>
+                <p class="text-white/60">M-Pesa, card, bank integration. Funds locked during matches.</p>
+            </div>
+            <div class="feature-card bg-card rounded-2xl p-6 border border-white/10 hover:border-primary transition-all">
+                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-comments text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-2">Match Chat</h3>
+                <p class="text-white/60">Communicate with opponents. Coordinate match times.</p>
+            </div>
+            <div class="feature-card bg-card rounded-2xl p-6 border border-white/10 hover:border-primary transition-all">
+                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-camera text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-2">Proof & Verification</h3>
+                <p class="text-white/60">Upload match screenshots. Opponent verifies result.</p>
+            </div>
+            <div class="feature-card bg-card rounded-2xl p-6 border border-white/10 hover:border-primary transition-all">
+                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-chart-line text-2xl text-primary"></i>
+                </div>
+                <h3 class="text-xl font-heading text-white mb-2">Leaderboards & Stats</h3>
+                <p class="text-white/60">Track progress, see where you rank globally.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Coming Soon Features -->
+<section id="coming-soon" class="py-20 md:py-28 bg-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="text-primary font-accent tracking-wider text-sm">COMING SOON</span>
+            <h2 class="font-heading text-4xl md:text-5xl text-white mt-4">The Future of <span class="text-primary">Competitive Gaming</span></h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="coming-soon-card bg-card rounded-2xl p-6 border border-white/10 text-center hover:border-primary transition-all">
+                <i class="fas fa-chart-line text-4xl text-primary mb-3"></i>
+                <h3 class="text-lg font-heading text-white mb-2">Skill-Based Matchmaking</h3>
+                <p class="text-white/50 text-sm">Get matched with players at your skill level</p>
+            </div>
+            <div class="coming-soon-card bg-card rounded-2xl p-6 border border-white/10 text-center hover:border-primary transition-all">
+                <i class="fas fa-video text-4xl text-primary mb-3"></i>
+                <h3 class="text-lg font-heading text-white mb-2">Live Match Tracking</h3>
+                <p class="text-white/50 text-sm">Real-time score updates</p>
+            </div>
+            <div class="coming-soon-card bg-card rounded-2xl p-6 border border-white/10 text-center hover:border-primary transition-all">
+                <i class="fas fa-shield-alt text-4xl text-primary mb-3"></i>
+                <h3 class="text-lg font-heading text-white mb-2">Anti-Cheat Systems</h3>
+                <p class="text-white/50 text-sm">Advanced detection for fair play</p>
+            </div>
+            <div class="coming-soon-card bg-card rounded-2xl p-6 border border-white/10 text-center hover:border-primary transition-all">
+                <i class="fas fa-eye text-4xl text-primary mb-3"></i>
+                <h3 class="text-lg font-heading text-white mb-2">Spectator Mode</h3>
+                <p class="text-white/50 text-sm">Watch top players compete</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer with Admin Export Section -->
+<footer class="bg-card/50 border-t border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <div class="w-4 h-4 rounded-full bg-dark"></div>
+                    </div>
+                    <span class="text-xl font-display bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">BALLERZ</span>
+                </div>
+                <p class="text-white/50 text-sm">Powered by Kwinsoft</p>
+                <p class="text-white/50 text-sm mt-2">Skill-based competitive gaming platform</p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-heading mb-4">Quick Links</h4>
+                <div class="space-y-2">
+                    <a href="#about" class="block text-white/50 hover:text-primary text-sm">About</a>
+                    <a href="#how-it-works" class="block text-white/50 hover:text-primary text-sm">How It Works</a>
+                    <a href="#features" class="block text-white/50 hover:text-primary text-sm">Features</a>
+                    <a href="#pricing" class="block text-white/50 hover:text-primary text-sm">Pricing</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-heading mb-4">Legal</h4>
+                <div class="space-y-2">
+                    <a href="#" onclick="showTerms()" class="block text-white/50 hover:text-primary text-sm cursor-pointer">Terms of Service</a>
+                    <a href="#" onclick="showPrivacy()" class="block text-white/50 hover:text-primary text-sm cursor-pointer">Privacy Policy</a>
+                    <a href="#" class="block text-white/50 hover:text-primary text-sm">Fair Play Policy</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-heading mb-4">Contact</h4>
+                <div class="space-y-2">
+                    <p class="text-white/50 text-sm"><i class="fas fa-envelope text-primary mr-2"></i> support@ballerz.com</p>
+                    <p class="text-white/50 text-sm"><i class="fas fa-phone text-primary mr-2"></i> +254 700 123 456</p>
+                </div>
+                <div class="flex gap-4 mt-4">
+                    <a href="#" class="text-white/50 hover:text-primary text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white/50 hover:text-primary text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white/50 hover:text-primary text-xl"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="text-white/50 hover:text-primary text-xl"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Admin Export Section (Hidden until bottom) -->
+        <div class="mt-8 pt-8 border-t border-white/10">
+            <div class="text-center mb-4">
+                <button onclick="showAdminLogin()" class="text-white/30 text-xs hover:text-primary transition">Admin Access</button>
+            </div>
+        </div>
+        
+        <div class="text-center pt-4">
+            <p class="text-white/40 text-sm">© 2024 Ballerz. All rights reserved. Powered by Kwinsoft.</p>
+            <p class="text-white/30 text-xs mt-2">Skill-based competitive gaming. Winners determined by actual game results and verified proof.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Waitlist Modal -->
+<div id="waitlistModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-md w-full mx-4 border border-white/10">
+        <div class="text-center">
+            <div class="w-16 h-16 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-bell text-2xl text-dark"></i>
+            </div>
+            <h2 class="text-2xl font-heading text-white mb-2">Join the Waitlist</h2>
+            <p class="text-white/60 mb-6">Be the first to know when Ballerz launches!</p>
+        </div>
+        
+        <form id="waitlistForm">
+            <div class="mb-4">
+                <input type="text" id="fullname" required class="w-full px-4 py-3 bg-dark/50 border border-white/10 rounded-xl text-white focus:border-primary focus:outline-none input-focus" placeholder="Full Name">
+            </div>
+            <div class="mb-4">
+                <input type="email" id="email" required class="w-full px-4 py-3 bg-dark/50 border border-white/10 rounded-xl text-white focus:border-primary focus:outline-none input-focus" placeholder="Email Address">
+            </div>
+            <div class="mb-4">
+                <input type="tel" id="phone" class="w-full px-4 py-3 bg-dark/50 border border-white/10 rounded-xl text-white focus:border-primary focus:outline-none input-focus" placeholder="Mobile Number (Optional)">
+            </div>
+            <div class="mb-6">
+                <select id="game" class="w-full px-4 py-3 bg-dark/50 border border-white/10 rounded-xl text-white focus:border-primary focus:outline-none">
+                    <option value="efootball">eFootball</option>
+                    <option value="fifa">FIFA</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition transform">
+                Join Waitlist
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div id="adminLoginModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-md w-full mx-4 border border-white/10">
+        <div class="text-center">
+            <div class="w-16 h-16 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-lock text-2xl text-dark"></i>
+            </div>
+            <h2 class="text-2xl font-heading text-white mb-2">Admin Access</h2>
+            <p class="text-white/60 mb-6">Enter password to view waitlist</p>
+        </div>
+        
+        <form id="adminLoginForm">
+            <div class="mb-6">
+                <input type="password" id="adminPassword" class="w-full px-4 py-3 bg-dark/50 border border-white/10 rounded-xl text-white focus:border-primary focus:outline-none input-focus" placeholder="Admin Password">
+            </div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition transform">
+                Access Dashboard
+            </button>
+        </form>
+        <p class="text-white/40 text-xs text-center mt-4 cursor-pointer hover:text-primary" onclick="closeAdminLogin()">Cancel</p>
+    </div>
+</div>
+
+<!-- Admin Dashboard Modal -->
+<div id="adminDashboardModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-5xl w-full mx-4 border border-white/10 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-heading text-white">Waitlist Management</h2>
+            <button onclick="closeAdminDashboard()" class="text-white/50 hover:text-primary text-2xl">&times;</button>
+        </div>
+        
+        <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
+            <div class="bg-primary/10 rounded-xl px-4 py-2">
+                <span class="text-primary font-bold text-xl" id="dashboardCount">0</span>
+                <span class="text-white/60 ml-2">Total Waitlist Users</span>
+            </div>
+            <button onclick="showComingSoon()" class="px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-dark transition">
+                <i class="fas fa-download mr-2"></i> Download CSV (Coming Soon)
+            </button>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="waitlist-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Game</th>
+                        <th>Joined</th>
+                    </tr>
+                </thead>
+                <tbody id="waitlistTableBody">
+                    <!-- Dynamic content -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-6 text-center">
+            <button onclick="closeAdminDashboard()" class="px-6 py-2 bg-card border border-white/10 text-white/60 rounded-lg hover:border-primary transition">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-md w-full mx-4 border border-white/10 text-center">
+        <div class="checkmark">
+            <i class="fas fa-check"></i>
+        </div>
+        <h2 class="text-2xl font-heading text-white mb-2">You're on the List!</h2>
+        <p class="text-white/60 mb-4">Thank you for joining the Ballerz waitlist!</p>
+        <button onclick="closeSuccessModal()" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition">
+            Got it!
+        </button>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div id="termsModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-2xl w-full mx-4 border border-white/10 max-h-[80vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-heading text-white">Terms of Service</h2>
+            <button onclick="closeTermsModal()" class="text-white/50 hover:text-primary text-2xl">&times;</button>
+        </div>
+        <div class="prose prose-invert max-w-none">
+            <p class="text-white/70 mb-4">Last Updated: April 2024</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">1. Acceptance of Terms</h3>
+            <p class="text-white/60 mb-4">By accessing or using Ballerz ("the Platform"), you agree to be bound by these Terms of Service. Ballerz is a skill-based competitive gaming platform operated by Kwinsoft.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">2. Skill-Based Competition</h3>
+            <p class="text-white/60 mb-4">Ballerz is strictly a skill-based gaming platform. Winners are determined by actual game results, verified through submitted proof. This is NOT a gambling platform.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">3. User Eligibility</h3>
+            <p class="text-white/60 mb-4">You must be at least 18 years old to participate in paid competitions. All users must provide accurate information during registration.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">4. Fair Play</h3>
+            <p class="text-white/60 mb-4">Cheating, collusion, or any form of unfair play is strictly prohibited. Violations may result in account suspension, forfeiture of winnings, and permanent ban.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">5. Payments & Withdrawals</h3>
+            <p class="text-white/60 mb-4">All payments are processed through secure providers. Winnings are credited to your wallet upon match verification. Withdrawals are processed within 24-48 hours.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">6. Dispute Resolution</h3>
+            <p class="text-white/60 mb-4">Any disputes regarding match results will be reviewed by our admin team. All decisions are final and binding.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">7. Platform Fees</h3>
+            <p class="text-white/60 mb-4">Ballerz charges a platform fee on each competition. Fees are clearly displayed before entry.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">8. Account Security</h3>
+            <p class="text-white/60 mb-4">You are responsible for maintaining the security of your account. Notify us immediately of any unauthorized access.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">9. Termination</h3>
+            <p class="text-white/60 mb-4">We reserve the right to suspend or terminate accounts that violate these terms.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">10. Contact</h3>
+            <p class="text-white/60 mb-4">For questions, contact support@ballerz.com</p>
+        </div>
+        <div class="mt-6 text-center">
+            <button onclick="closeTermsModal()" class="px-6 py-2 bg-primary text-dark rounded-lg font-bold">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Modal -->
+<div id="privacyModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-2xl w-full mx-4 border border-white/10 max-h-[80vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-heading text-white">Privacy Policy</h2>
+            <button onclick="closePrivacyModal()" class="text-white/50 hover:text-primary text-2xl">&times;</button>
+        </div>
+        <div class="prose prose-invert max-w-none">
+            <p class="text-white/70 mb-4">Last Updated: April 2024</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">1. Information We Collect</h3>
+            <p class="text-white/60 mb-4">We collect information you provide during registration: name, email, phone number, gaming preferences, and transaction history.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">2. How We Use Your Information</h3>
+            <p class="text-white/60 mb-4">To operate the platform, process payments, verify match results, communicate updates, and improve our services.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">3. Data Security</h3>
+            <p class="text-white/60 mb-4">We use industry-standard encryption and security measures to protect your data. All transactions are processed through secure payment gateways.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">4. Data Sharing</h3>
+            <p class="text-white/60 mb-4">We do not sell your personal information. Data is shared only with payment processors and as required by law.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">5. Your Rights</h3>
+            <p class="text-white/60 mb-4">You may request access, correction, or deletion of your personal data. Contact support@ballerz.com for assistance.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">6. Cookies</h3>
+            <p class="text-white/60 mb-4">We use cookies to enhance your experience and analyze platform usage.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">7. Updates to Policy</h3>
+            <p class="text-white/60 mb-4">We may update this policy periodically. Continued use constitutes acceptance of changes.</p>
+            
+            <h3 class="text-primary font-heading text-xl mt-6 mb-3">8. Contact</h3>
+            <p class="text-white/60 mb-4">For privacy concerns, email privacy@ballerz.com</p>
+        </div>
+        <div class="mt-6 text-center">
+            <button onclick="closePrivacyModal()" class="px-6 py-2 bg-primary text-dark rounded-lg font-bold">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Waitlist storage
+    let waitlistUsers = JSON.parse(localStorage.getItem('ballerz_waitlist') || '[]');
+    
+    // Admin password (can be changed)
+    const ADMIN_PASSWORD = 'ballerz2024';
+    
+    function updateWaitlistCount() {
+        const countElement = document.getElementById('waitlistCount');
+        if (countElement) {
+            countElement.textContent = waitlistUsers.length;
+        }
+    }
+    
+    // Modal functions
+    function openWaitlistModal() {
+        document.getElementById('waitlistModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeWaitlistModal() {
+        document.getElementById('waitlistModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function showAdminLogin() {
+        document.getElementById('adminLoginModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeAdminLogin() {
+        document.getElementById('adminLoginModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function showAdminDashboard() {
+        document.getElementById('adminDashboardModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        displayWaitlistTable();
+    }
+    
+    function closeAdminDashboard() {
+        document.getElementById('adminDashboardModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function displayWaitlistTable() {
+        const tbody = document.getElementById('waitlistTableBody');
+        const countSpan = document.getElementById('dashboardCount');
+        
+        countSpan.textContent = waitlistUsers.length;
+        
+        if (waitlistUsers.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center text-white/50 py-8">No waitlist users yet</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = '';
+        waitlistUsers.forEach((user, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td class="font-medium">${escapeHtml(user.fullname)}</td>
+                <td>${escapeHtml(user.email)}</td>
+                <td>${user.phone || '-'}</td>
+                <td><span class="text-primary">${user.game === 'efootball' ? 'eFootball' : user.game === 'fifa' ? 'FIFA' : 'Both'}</span></td>
+                <td class="text-white/50 text-sm">${new Date(user.joinedAt).toLocaleDateString()}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+    
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    function showComingSoon() {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerHTML = '<i class="fas fa-clock mr-2"></i> Download feature coming soon!';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+    
+    function openSuccessModal() {
+        document.getElementById('successModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeSuccessModal() {
+        document.getElementById('successModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        closeWaitlistModal();
+    }
+    
+    function showTerms() {
+        document.getElementById('termsModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeTermsModal() {
+        document.getElementById('termsModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function showPrivacy() {
+        document.getElementById('privacyModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closePrivacyModal() {
+        document.getElementById('privacyModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Handle waitlist form submission
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullname = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const game = document.getElementById('game').value;
+        
+        if (!fullname || !email) {
+            alert('Please fill in your name and email');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        if (waitlistUsers.some(user => user.email === email)) {
+            alert('This email is already on the waitlist!');
+            return;
+        }
+        
+        const newUser = {
+            id: Date.now(),
+            fullname: fullname,
+            email: email,
+            phone: phone,
+            game: game,
+            joinedAt: new Date().toISOString()
+        };
+        
+        waitlistUsers.push(newUser);
+        localStorage.setItem('ballerz_waitlist', JSON.stringify(waitlistUsers));
+        
+        updateWaitlistCount();
+        
+        console.log('New waitlist user:', newUser);
+        console.log('Total waitlist users:', waitlistUsers.length);
+        
+        closeWaitlistModal();
+        openSuccessModal();
+        
+        document.getElementById('waitlistForm').reset();
+    });
+    
+    // Handle admin login
+    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const password = document.getElementById('adminPassword').value;
+        
+        if (password === ADMIN_PASSWORD) {
+            closeAdminLogin();
+            showAdminDashboard();
+        } else {
+            alert('Incorrect password');
+        }
+        document.getElementById('adminPassword').value = '';
+    });
+    
+    // Close modals on outside click
+    window.onclick = function(event) {
+        const modals = ['waitlistModal', 'adminLoginModal', 'adminDashboardModal', 'successModal', 'termsModal', 'privacyModal'];
+        modals.forEach(modalId => {
+            const modal = document.getElementById(modalId);
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    };
+    
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+    
+    // Scroll animations
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(el => observer.observe(el));
+    
+    // Initialize
+    updateWaitlistCount();
+    console.log('Ballerz Waitlist Users:', waitlistUsers);
+</script>
+
+</body>
+</html>
