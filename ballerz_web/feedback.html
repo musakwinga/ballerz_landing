@@ -1,1 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ballerz | Community Feedback - Share Your Ideas</title>
+    <meta name="description" content="Help shape Ballerz! Share your feature requests, ideas, and feedback with our community.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Theme Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00ff87',
+                        secondary: '#60efff',
+                        dark: '#0a0c0f',
+                        card: '#1a1e24',
+                        'card-hover': '#242931',
+                    },
+                    fontFamily: {
+                        heading: ['Bangers', 'cursive'],
+                        display: ['Anton', 'sans-serif'],
+                        body: ['Oswald', 'sans-serif'],
+                        accent: ['Bebas Neue', 'cursive'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #0a0c0f;
+            font-family: 'Oswald', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .gradient-sphere {
+            position: absolute;
+            width: 80vmax;
+            height: 80vmax;
+            background: radial-gradient(circle at 30% 50%,
+                rgba(0, 255, 135, 0.12) 0%,
+                rgba(96, 239, 255, 0.08) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .gradient-sphere-2 {
+            position: absolute;
+            width: 70vmax;
+            height: 70vmax;
+            background: radial-gradient(circle at 70% 30%,
+                rgba(96, 239, 255, 0.1) 0%,
+                rgba(0, 255, 135, 0.06) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+            bottom: -10%;
+            left: -10%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 20px) scale(1.05); }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1e24;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00ff87;
+            border-radius: 10px;
+        }
+        
+        .chat-message {
+            transition: all 0.2s ease;
+        }
+        
+        .chat-message:hover {
+            transform: translateX(5px);
+        }
+        
+        .feedback-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feedback-card:hover {
+            transform: translateY(-3px);
+            border-color: #00ff87;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00ff87, #60efff);
+            color: #0a0c0f;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Bebas Neue', cursive;
+            font-weight: bold;
+            z-index: 2000;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 255, 135, 0.3);
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .input-focus:focus {
+            outline: none;
+            border-color: #00ff87;
+            box-shadow: 0 0 0 3px rgba(0, 255, 135, 0.2);
+        }
+    </style>
+</head>
+<body>
 
+<div class="bg-animation">
+    <div class="gradient-sphere" style="top: -20%; right: -10%;"></div>
+    <div class="gradient-sphere-2"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-dark/95 backdrop-blur-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 md:h-20">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                    <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-dark border-2 border-dark"></div>
+                </div>
+                <div>
+                    <span class="text-2xl md:text-3xl font-display bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">BALLERZ</span>
+                    <span class="hidden md:inline-block text-xs text-white/50 ml-2 font-accent">Community Feedback</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button onclick="showUsernameModal()" class="px-4 py-2 bg-primary/10 border border-primary text-primary rounded-lg hover:bg-primary hover:text-dark transition text-sm font-accent">
+                    <i class="fas fa-user-edit mr-2"></i> Change Name
+                </button>
+                <a href="index.html" class="px-4 py-2 bg-card border border-white/10 text-white/70 rounded-lg hover:border-primary hover:text-primary transition text-sm font-accent">
+                    <i class="fas fa-home mr-2"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="pt-24 pb-16 px-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary rounded-full px-4 py-2 mb-6">
+                <i class="fas fa-comments text-primary text-sm"></i>
+                <span class="text-primary text-sm font-accent tracking-wide">VOICE YOUR IDEAS</span>
+            </div>
+            <h1 class="font-heading text-4xl md:text-5xl text-white mb-4">Shape the Future of <span class="text-primary">Ballerz</span></h1>
+            <p class="text-white/60 max-w-2xl mx-auto">Share your feature requests, ideas, and feedback. The best ideas will be implemented!</p>
+        </div>
+        
+        <!-- Stats Bar -->
+        <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+            <div class="flex items-center gap-4">
+                <div class="bg-card rounded-full px-4 py-2 border border-white/10">
+                    <i class="fas fa-users text-primary mr-2"></i>
+                    <span class="text-white" id="activeUsers">0</span>
+                    <span class="text-white/50 text-sm ml-1">active users</span>
+                </div>
+                <div class="bg-card rounded-full px-4 py-2 border border-white/10">
+                    <i class="fas fa-comment text-primary mr-2"></i>
+                    <span class="text-white" id="messageCount">0</span>
+                    <span class="text-white/50 text-sm ml-1">ideas shared</span>
+                </div>
+            </div>
+            <div class="bg-card/50 rounded-full px-4 py-2 border border-white/10">
+                <i class="fas fa-user text-primary mr-2"></i>
+                <span class="text-white" id="currentUsername">Guest</span>
+                <span class="text-white/50 text-sm ml-1">(you)</span>
+            </div>
+        </div>
+        
+        <!-- Feedback Form -->
+        <div class="bg-card rounded-2xl border border-white/10 p-6 mb-8">
+            <h3 class="font-heading text-xl text-white mb-4">Share Your Idea</h3>
+            <div class="flex gap-4 flex-col md:flex-row">
+                <input type="text" id="feedbackInput" placeholder="What feature would you love to see? e.g., 'Add tournament chat', 'More game modes'..." 
+                    class="flex-1 bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:outline-none input-focus">
+                <button onclick="submitFeedback()" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition transform whitespace-nowrap">
+                    <i class="fas fa-paper-plane mr-2"></i> Share Idea
+                </button>
+            </div>
+            <p class="text-white/40 text-xs mt-3"><i class="fas fa-info-circle mr-1"></i> Your username will appear with your idea. Be constructive and respectful!</p>
+        </div>
+        
+        <!-- Live Feedback Feed -->
+        <div class="bg-card rounded-2xl border border-white/10 overflow-hidden">
+            <div class="bg-dark/50 px-6 py-4 border-b border-white/10">
+                <h3 class="font-heading text-white"><i class="fas fa-fire text-primary mr-2"></i> Live Ideas Feed</h3>
+                <p class="text-white/40 text-sm mt-1">Real-time updates from the community</p>
+            </div>
+            <div id="feedbackFeed" class="h-[500px] overflow-y-auto p-4 space-y-4">
+                <div class="text-center text-white/40 py-10">
+                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                    <p>Loading ideas...</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Guidelines -->
+        <div class="mt-8 grid md:grid-cols-3 gap-4">
+            <div class="bg-card/30 rounded-xl p-4 border border-white/10 text-center">
+                <i class="fas fa-lightbulb text-primary text-2xl mb-2"></i>
+                <p class="text-white/60 text-sm">Suggest new features</p>
+            </div>
+            <div class="bg-card/30 rounded-xl p-4 border border-white/10 text-center">
+                <i class="fas fa-thumbs-up text-primary text-2xl mb-2"></i>
+                <p class="text-white/60 text-sm">Upvote ideas you love</p>
+            </div>
+            <div class="bg-card/30 rounded-xl p-4 border border-white/10 text-center">
+                <i class="fas fa-check-circle text-primary text-2xl mb-2"></i>
+                <p class="text-white/60 text-sm">Best ideas get implemented</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Username Modal -->
+<div id="usernameModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content bg-card rounded-2xl p-8 max-w-md w-full mx-4 border border-white/10">
+        <div class="text-center">
+            <div class="w-16 h-16 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-user text-2xl text-dark"></i>
+            </div>
+            <h2 class="text-2xl font-heading text-white mb-2">Choose Your Username</h2>
+            <p class="text-white/60 mb-6">This name will appear with your feedback</p>
+        </div>
+        
+        <input type="text" id="usernameInput" maxlength="30" class="w-full px-4 py-3 bg-dark/50 border border-white/10 rounded-xl text-white focus:border-primary focus:outline-none input-focus mb-4" placeholder="Enter username (max 30 chars)">
+        
+        <div class="flex gap-3">
+            <button onclick="saveUsername()" class="flex-1 py-3 bg-gradient-to-r from-primary to-secondary text-dark font-accent font-bold rounded-xl hover:scale-105 transition">
+                Save
+            </button>
+            <button onclick="closeUsernameModal()" class="flex-1 py-3 bg-card border border-white/10 text-white/70 rounded-xl hover:border-primary transition">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Local Storage Keys
+    const STORAGE_KEY = 'ballerz_feedback';
+    const USERNAME_KEY = 'ballerz_username';
+    
+    // Initialize data
+    let feedbackData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    let currentUsername = localStorage.getItem(USERNAME_KEY) || '';
+    let pollingInterval = null;
+    
+    // Update active users count (unique users in last 5 minutes)
+    function updateActiveUsers() {
+        const fiveMinutesAgo = Date.now() - 5 * 60 * 1000;
+        const activeUsers = new Set();
+        feedbackData.forEach(msg => {
+            if (new Date(msg.timestamp).getTime() > fiveMinutesAgo) {
+                activeUsers.add(msg.username);
+            }
+        });
+        document.getElementById('activeUsers').textContent = activeUsers.size;
+        document.getElementById('messageCount').textContent = feedbackData.length;
+    }
+    
+    // Display username
+    function displayUsername() {
+        if (currentUsername) {
+            document.getElementById('currentUsername').textContent = currentUsername;
+        } else {
+            document.getElementById('currentUsername').textContent = 'Guest';
+            showUsernameModal();
+        }
+    }
+    
+    // Render feedback feed
+    function renderFeedback() {
+        const container = document.getElementById('feedbackFeed');
+        
+        if (feedbackData.length === 0) {
+            container.innerHTML = `
+                <div class="text-center text-white/40 py-10">
+                    <i class="fas fa-comment-dots text-4xl mb-3"></i>
+                    <p>No ideas yet. Be the first to share!</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Sort by timestamp (newest first)
+        const sorted = [...feedbackData].reverse();
+        
+        container.innerHTML = sorted.map(feedback => `
+            <div class="feedback-card bg-dark/30 rounded-xl p-4 border border-white/10 hover:border-primary transition-all">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-dark font-bold text-sm">
+                            ${feedback.username.charAt(0).toUpperCase()}
+                        </div>
+                        <span class="font-accent text-primary">${escapeHtml(feedback.username)}</span>
+                        <span class="text-white/30 text-xs">${formatTime(feedback.timestamp)}</span>
+                    </div>
+                    <button onclick="upvoteFeedback('${feedback.id}')" class="text-white/40 hover:text-primary transition text-sm">
+                        <i class="fas fa-thumbs-up mr-1"></i> ${feedback.upvotes || 0}
+                    </button>
+                </div>
+                <p class="text-white/80 ml-10">${escapeHtml(feedback.message)}</p>
+                ${feedback.reply ? `
+                    <div class="ml-10 mt-3 pl-3 border-l-2 border-primary/30">
+                        <div class="flex items-center gap-2 text-xs">
+                            <i class="fas fa-reply text-primary"></i>
+                            <span class="text-primary font-accent">Admin</span>
+                            <span class="text-white/30">${formatTime(feedback.replyTimestamp)}</span>
+                        </div>
+                        <p class="text-white/60 text-sm mt-1">${escapeHtml(feedback.reply)}</p>
+                    </div>
+                ` : ''}
+            </div>
+        `).join('');
+        
+        // Auto scroll to bottom
+        container.scrollTop = container.scrollHeight;
+        updateActiveUsers();
+    }
+    
+    // Escape HTML
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    // Format time
+    function formatTime(timestamp) {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diff = Math.floor((now - date) / 1000);
+        
+        if (diff < 60) return 'just now';
+        if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+        if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+        return date.toLocaleDateString();
+    }
+    
+    // Submit feedback
+    function submitFeedback() {
+        const message = document.getElementById('feedbackInput').value.trim();
+        
+        if (!message) {
+            showToast('Please enter your idea!', 'warning');
+            return;
+        }
+        
+        if (!currentUsername) {
+            showUsernameModal();
+            showToast('Please set a username first!', 'info');
+            return;
+        }
+        
+        const newFeedback = {
+            id: Date.now().toString(),
+            username: currentUsername,
+            message: message,
+            timestamp: new Date().toISOString(),
+            upvotes: 0,
+            reply: null,
+            replyTimestamp: null
+        };
+        
+        feedbackData.push(newFeedback);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackData));
+        
+        document.getElementById('feedbackInput').value = '';
+        renderFeedback();
+        showToast('Idea shared! Thanks for contributing 🎉', 'success');
+        
+        // Auto scroll to new message
+        setTimeout(() => {
+            const container = document.getElementById('feedbackFeed');
+            container.scrollTop = container.scrollHeight;
+        }, 100);
+    }
+    
+    // Upvote feedback
+    function upvoteFeedback(id) {
+        const index = feedbackData.findIndex(f => f.id === id);
+        if (index !== -1) {
+            feedbackData[index].upvotes = (feedbackData[index].upvotes || 0) + 1;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackData));
+            renderFeedback();
+            showToast('Thanks for the support! 👍', 'success');
+        }
+    }
+    
+    // Username modal functions
+    function showUsernameModal() {
+        document.getElementById('usernameModal').style.display = 'flex';
+        document.getElementById('usernameInput').value = currentUsername;
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeUsernameModal() {
+        document.getElementById('usernameModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    function saveUsername() {
+        const newUsername = document.getElementById('usernameInput').value.trim();
+        
+        if (!newUsername) {
+            showToast('Please enter a username!', 'warning');
+            return;
+        }
+        
+        if (newUsername.length > 30) {
+            showToast('Username must be 30 characters or less!', 'warning');
+            return;
+        }
+        
+        currentUsername = newUsername;
+        localStorage.setItem(USERNAME_KEY, currentUsername);
+        displayUsername();
+        closeUsernameModal();
+        showToast(`Welcome, ${currentUsername}!`, 'success');
+    }
+    
+    // Show toast notification
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} mr-2"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+    
+    // Simulate real-time updates (polling every 5 seconds)
+    function startPolling() {
+        if (pollingInterval) clearInterval(pollingInterval);
+        
+        pollingInterval = setInterval(() => {
+            // Check for new data from other tabs/windows
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                const newData = JSON.parse(stored);
+                if (JSON.stringify(newData) !== JSON.stringify(feedbackData)) {
+                    feedbackData = newData;
+                    renderFeedback();
+                }
+            }
+        }, 3000);
+    }
+    
+    // Load initial data
+    function init() {
+        displayUsername();
+        renderFeedback();
+        startPolling();
+        
+        // Listen for storage events from other tabs
+        window.addEventListener('storage', (e) => {
+            if (e.key === STORAGE_KEY) {
+                feedbackData = JSON.parse(e.newValue || '[]');
+                renderFeedback();
+            }
+        });
+    }
+    
+    // Enter key submit
+    document.getElementById('feedbackInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            submitFeedback();
+        }
+    });
+    
+    // Initialize
+    init();
+</script>
+
+</body>
+</html>
